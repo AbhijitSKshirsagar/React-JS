@@ -3,7 +3,7 @@ import logo from './assets/logo.png';
 import './App.css';
 
 class App extends React.Component {
-  url = 'https://www.google.com'
+  url = 'https://www.bridgelabz.com'
   constructor(){
     super()
     this.state={
@@ -31,7 +31,7 @@ class App extends React.Component {
     return(
       <>
       <div>
-        <h1>{this.state.userName} from BridgeLabz</h1>
+        <h1>Hello {this.state.userName} from BridgeLabz</h1>
         <img src={logo} onClick={this.onClick}
         alt="The BridgeLabz logo: a bridge to Employment through lab works"/>
       </div>
@@ -39,6 +39,27 @@ class App extends React.Component {
         <input onChange={this.onNameChange} />
         <span className="error-output">{this.state.nameError}</span>
       </div>
+      <p>At Bridgelabz we are a Community of</p>
+        <ul>
+          <li>Technologists</li>
+          <li>Thinkers</li>
+          <li>Builders</li>
+        </ul>
+        <p>
+          Working together to keep the Tech Employability of Engineers alive and
+          accessible, so Tech Companies worldwide can get contributors and
+          creators for technology Solutions. We belive this act of human
+          collaboration across an employability platfor is essential to
+          individual growth and our collevtive future.
+        </p>
+        <p>
+          To know more about us, visit{" "}
+          <a href="https://www.BridgeLabz.com/">BridgeLabz</a> to learn even
+          more about out mission
+        </p>
+        <p>
+          i.e <strong> Employability to all</strong>
+        </p>
       </>
     )
   }
