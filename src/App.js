@@ -1,52 +1,57 @@
-import React from 'react';
-import logo from './assets/logo.png';
-import './App.css';
-
+import logo from "./assets/logo.png";
+import React from "react";
+import "./App.css";
+import Home from "./components/Home";
+import About from "./components/About";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 class App extends React.Component {
-  url = 'https://www.bridgelabz.com'
-  constructor(){
-    super()
-    this.state={
-      userName:'',
-      nameError:''
-    }
+  url = "http://www.bridgelabz.com/";
+  constructor() {
+    super();
+    this.state = {
+      userName: "",
+      nameError: "",
+    };
   }
 
+  //onClick Function
   onClick = ($event) => {
-    console.log("save button is click!", $event);
+    console.log("Save button is clicked !", $event);
     window.open(this.url, "_blank");
-  }
-
+  };
   onNameChange = (event) => {
-    console.log("value is ", event.target.value)
-    const nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$')
-    this.setState({userName: event.target.value})
-    if (nameRegex.test(event.target.value)){
-      this.setState({nameError:''})
-    }else{
-      this.setState({nameError:'Name is Incorect'})
-    }
-  }
-  render(){
-    return(
+    console.log("value is", event.target.value);
+    const nameRegex = RegExp("^[A-Z]{1}[a-z]{2,}$");
+    this.setState({ userName: event.target.value });
+    if (nameRegex.test(event.target.value)) {
+      this.setState({ nameError: "" });
+    } else this.setState({ nameError: "Incorrect name" });
+  };
+  render() {
+    return (
       <>
-      <div>
-        <h1>Hello {this.state.userName} from BridgeLabz</h1>
-        <img src={logo} onClick={this.onClick}
-        alt="The BridgeLabz logo: a bridge to Employment through lab works"/>
-      </div>
-      <div>
-        <input onChange={this.onNameChange} />
-        <span className="error-output">{this.state.nameError}</span>
-      </div>
-      <p>At Bridgelabz we are a Community of</p>
+        <div className="App">
+          <h1>Hello {this.state.userName} From Bridgelabz</h1>
+          <img
+            src={logo}
+            onClick={this.onClick}
+            className="App-logo"
+            alt="logo"
+          />
+        </div>
+        <div className="App">
+          <br />
+          <input onChange={this.onNameChange} />
+          <span className="error-output">{this.state.nameError}</span>
+        </div>
+        <p>At Bridgelabz we are a Community of</p>
         <ul>
           <li>Technologists</li>
           <li>Thinkers</li>
           <li>Builders</li>
         </ul>
         <p>
-          Working together to keep the Tech Employability of Engineers alive and
+          Working together to keep the employability of Engineers alive and
           accessible, so Tech Companies worldwide can get contributors and
           creators for technology Solutions. We belive this act of human
           collaboration across an employability platfor is essential to
@@ -54,15 +59,29 @@ class App extends React.Component {
         </p>
         <p>
           To know more about us, visit{" "}
-          <a href="https://www.BridgeLabz.com/">BridgeLabz</a> to learn even
+          <a href="https://www.bridgelabz.com/">Bridgelabz</a> to learn even
           more about out mission
         </p>
         <p>
-          i.e <strong> Employability to all</strong>
+          <strong>i.e Employability to all</strong>
         </p>
+        <ul>
+          <li>
+            <a href="/home">Home</a>
+          </li>
+          <li>
+            <a href="/about">About</a>
+          </li>
+        </ul>
+
+        <BrowserRouter>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </BrowserRouter>
       </>
-    )
+    );
   }
 }
-
 export default App;
